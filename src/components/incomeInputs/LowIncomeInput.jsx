@@ -1,3 +1,5 @@
+import formatNumber from "../../utils/formatNumber";
+
 export default function LowIncomeInput({ lowIncome, handleLowIncomeChange }) {
   let currentIncome = 100000000000;
   let lowestIncome = 50000000000;
@@ -6,7 +8,7 @@ export default function LowIncomeInput({ lowIncome, handleLowIncomeChange }) {
   while (currentIncome >= lowestIncome) {
     optionsArray.push(
       <option key={currentIncome} value={currentIncome}>
-        {currentIncome}
+        {formatNumber(currentIncome)}
       </option>
     );
     currentIncome -= 1000000000;

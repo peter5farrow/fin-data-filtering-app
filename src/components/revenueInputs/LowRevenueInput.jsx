@@ -1,3 +1,5 @@
+import formatNumber from "../../utils/formatNumber";
+
 export default function LowRevenueInput({
   lowRevenue,
   handleLowRevenueChange,
@@ -9,7 +11,7 @@ export default function LowRevenueInput({
   while (currentRevenue >= lowestRevenue) {
     optionsArray.push(
       <option key={currentRevenue} value={currentRevenue}>
-        {currentRevenue}
+        {formatNumber(currentRevenue)}
       </option>
     );
     currentRevenue -= 10000000000;
