@@ -12,6 +12,7 @@ import HighIncomeInput from "./incomeInputs/HighIncomeInput";
 export default function DataTable() {
   const [finData, setFinData] = useState([]);
   const [approvedData, setApprovedData] = useState([]);
+  const [sortBy, setSortBy] = useState("dateDes");
 
   const [startYear, setStartYear] = useState(2020);
   const [endYear, setEndYear] = useState(2025);
@@ -24,6 +25,7 @@ export default function DataTable() {
 
   const apiKey = import.meta.env.VITE_API_KEY;
 
+  // Fetch
   useEffect(() => {
     const fetchFinData = async () => {
       const res = await axios.get(
@@ -55,6 +57,9 @@ export default function DataTable() {
   }, [startYear, endYear, lowRevenue, highRevenue, lowIncome, highIncome]);
 
   // onChange handlers
+  const handleSortByChange = (event) => {
+    setSortBy(event.target.value);
+  };
   const handleStartYearChange = (event) => {
     setStartYear(event.target.value);
   };
@@ -75,8 +80,6 @@ export default function DataTable() {
   };
 
   // Sorting
-  const sortBy = "incAsc";
-
   switch (sortBy) {
     case "dateDes":
       approvedData.sort((a, b) => {
@@ -88,7 +91,6 @@ export default function DataTable() {
         return new Date(a.date) - new Date(b.date);
       });
       break;
-
     case "revDes":
       approvedData.sort((a, b) => {
         return b.revenue - a.revenue;
@@ -99,7 +101,6 @@ export default function DataTable() {
         return a.revenue - b.revenue;
       });
       break;
-
     case "incDes":
       approvedData.sort((a, b) => {
         return b.netIncome - a.netIncome;
@@ -110,14 +111,7 @@ export default function DataTable() {
         return a.netIncome - b.netIncome;
       });
       break;
-
-    default:
-      approvedData.sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
-      });
   }
-
-  //
 
   const tableRows = approvedData.map((entry) => {
     return <TableRow key={entry.fillingDate} entry={entry} />;
@@ -125,7 +119,7 @@ export default function DataTable() {
 
   return (
     <div className="dataTable">
-      <SortByInput />
+      <SortByInput sortBy={sortBy} handleSortByChange={handleSortByChange} />
       <table>
         <thead>
           <tr>
