@@ -1,13 +1,27 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import TableRow from "./TableRow";
-import StartYearInput from "./StartYearInput";
+
+import StartYearInput from "./yearInputs/StartYearInput";
+import EndYearInput from "./yearInputs/EndYearInput";
+import LowRevenueInput from "./revenueInputs/LowRevenueInput";
+import HighRevenueInput from "./revenueInputs/HighRevenueInput";
+import LowIncomeInput from "./incomeInputs/LowIncomeInput";
+import HighIncomeInput from "./incomeInputs/HighIncomeInput";
 
 export default function DataTable() {
   const [finData, setFinData] = useState([]);
   const [approvedData, setApprovedData] = useState([]);
+
   const [startYear, setStartYear] = useState(2020);
   const [endYear, setEndYear] = useState(2025);
+
+  const [lowRevenue, setLowRevenue] = useState(200000000000);
+  const [highRevenue, setHighRevenue] = useState(500000000000);
+
+  const [lowIncome, setLowIncome] = useState(50000000000);
+  const [highIncome, setHighIncome] = useState(100000000000);
+
   const apiKey = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
@@ -21,35 +35,86 @@ export default function DataTable() {
     fetchFinData();
   }, []);
 
-  // Filter by years
+  // Filter
   useEffect(() => {
-    const withinDateRange = [];
+    const withinRanges = [];
     finData.forEach((entry) => {
       const year = entry.date.split("-")[0];
-      if (startYear <= year) {
-        withinDateRange.push(entry);
+      if (
+        startYear <= year &&
+        year <= endYear &&
+        lowRevenue <= entry.revenue &&
+        entry.revenue <= highRevenue &&
+        lowIncome <= entry.netIncome &&
+        entry.netIncome <= highIncome
+      ) {
+        withinRanges.push(entry);
       }
     });
-    setApprovedData(withinDateRange);
-  }, [startYear, endYear]);
+    setApprovedData(withinRanges);
+  }, [startYear, endYear, lowRevenue, highRevenue, lowIncome, highIncome]);
 
-  // Filter by revenue
-
-  // Filter by net income
+  // onChange handlers
+  const handleStartYearChange = (event) => {
+    setStartYear(event.target.value);
+  };
+  const handleEndYearChange = (event) => {
+    setEndYear(event.target.value);
+  };
+  const handleLowRevenueChange = (event) => {
+    setLowRevenue(event.target.value);
+  };
+  const handleHighRevenueChange = (event) => {
+    setHighRevenue(event.target.value);
+  };
+  const handleLowIncomeChange = (event) => {
+    setLowIncome(event.target.value);
+  };
+  const handleHighIncomeChange = (event) => {
+    setHighIncome(event.target.value);
+  };
 
   const tableRows = approvedData.map((entry) => {
     return <TableRow key={entry.fillingDate} entry={entry} />;
   });
 
-  const handleSelectChange = (event) => {
-    setStartYear(event.target.value);
-  };
-
   return (
     <div>
-      <StartYearInput startYear={startYear} setStartYear={handleSelectChange} />
       <table>
         <thead>
+          <tr>
+            <th>
+              <StartYearInput
+                startYear={startYear}
+                handleStartYearChange={handleStartYearChange}
+              />
+              <EndYearInput
+                endYear={endYear}
+                handleEndYearChange={handleEndYearChange}
+              />
+            </th>
+            <th>
+              <HighRevenueInput
+                highRevenue={highRevenue}
+                handleHighRevenueChange={handleHighRevenueChange}
+              />
+              <LowRevenueInput
+                lowRevenue={lowRevenue}
+                handleLowRevenueChange={handleLowRevenueChange}
+              />
+            </th>
+            <th>
+              <HighIncomeInput
+                highIncome={highIncome}
+                handleHighIncomeChange={handleHighIncomeChange}
+              />
+              <LowIncomeInput
+                lowIncome={lowIncome}
+                handleLowIncomeChange={handleLowIncomeChange}
+              />
+            </th>
+          </tr>
+
           <tr>
             <th>Date</th>
             <th>Revenue</th>
