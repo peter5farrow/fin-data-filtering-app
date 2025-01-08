@@ -1,0 +1,14 @@
+body {
+  background-color: rgb(205, 255, 248);
+  display: flex;
+  justify-content: center;
+}
+
+.dataTable {
+  margin: 35vh 0 0 15vw;
+  width: 100vw;
+}
+
+.dataTable table {
+  width: 85vw;
+}

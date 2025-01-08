@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import TableRow from "./TableRow";
-
+import SortByInput from "./SortByInput";
 import StartYearInput from "./yearInputs/StartYearInput";
 import EndYearInput from "./yearInputs/EndYearInput";
 import LowRevenueInput from "./revenueInputs/LowRevenueInput";
@@ -74,12 +74,58 @@ export default function DataTable() {
     setHighIncome(event.target.value);
   };
 
+  // Sorting
+  const sortBy = "incAsc";
+
+  switch (sortBy) {
+    case "dateDes":
+      approvedData.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
+      break;
+    case "dateAsc":
+      approvedData.sort((a, b) => {
+        return new Date(a.date) - new Date(b.date);
+      });
+      break;
+
+    case "revDes":
+      approvedData.sort((a, b) => {
+        return b.revenue - a.revenue;
+      });
+      break;
+    case "revAsc":
+      approvedData.sort((a, b) => {
+        return a.revenue - b.revenue;
+      });
+      break;
+
+    case "incDes":
+      approvedData.sort((a, b) => {
+        return b.netIncome - a.netIncome;
+      });
+      break;
+    case "incAsc":
+      approvedData.sort((a, b) => {
+        return a.netIncome - b.netIncome;
+      });
+      break;
+
+    default:
+      approvedData.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
+  }
+
+  //
+
   const tableRows = approvedData.map((entry) => {
     return <TableRow key={entry.fillingDate} entry={entry} />;
   });
 
   return (
-    <div>
+    <div className="dataTable">
+      <SortByInput />
       <table>
         <thead>
           <tr>
@@ -129,12 +175,3 @@ export default function DataTable() {
     </div>
   );
 }
-
-//
-// ■ Date (e.g., "2024-09-28")
-// ■ Revenue
-// ■ Net Income
-// ■ Gross Profit
-// ■ EPS (Earnings Per Share)
-// ■ Operating Income
-//
