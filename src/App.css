@@ -1,4 +1,4 @@
-html {
+/* html {
   height: 100vh;
   width: 100vw;
   background-color: rgb(205, 255, 248);
@@ -26,4 +26,49 @@ html {
 
 #sort-by {
   margin-bottom: 30px;
-}
+} */
+
+/* 
+<div class="overflow-x-auto">
+  <table class="min-w-full table-auto">
+    <thead class="bg-gray-200">
+      <tr>
+        <th class="px-4 py-2 text-left">Name</th>
+        <th class="px-4 py-2 text-left">Email</th>
+        <th class="px-4 py-2 text-left">Phone</th>
+        <th class="px-4 py-2 text-left">Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="block sm:table-row bg-gray-50">
+        <td class="border px-4 py-2 sm:table-cell block sm:inline-block">
+          <span class="sm:hidden font-semibold">Name: </span>John Doe
+        </td>
+        <td class="border px-4 py-2 sm:table-cell block sm:inline-block">
+          <span class="sm:hidden font-semibold">Email: </span>john@example.com
+        </td>
+        <td class="border px-4 py-2 sm:table-cell block sm:inline-block">
+          <span class="sm:hidden font-semibold">Phone: </span>(123) 456-7890
+        </td>
+        <td class="border px-4 py-2 sm:table-cell block sm:inline-block">
+          <span class="sm:hidden font-semibold">Address: </span>123 Main St
+        </td>
+      </tr>
+      <tr class="block sm:table-row bg-white">
+        <td class="border px-4 py-2 sm:table-cell block sm:inline-block">
+          <span class="sm:hidden font-semibold">Name: </span>Jane Smith
+        </td>
+        <td class="border px-4 py-2 sm:table-cell block sm:inline-block">
+          <span class="sm:hidden font-semibold">Email: </span>jane@example.com
+        </td>
+        <td class="border px-4 py-2 sm:table-cell block sm:inline-block">
+          <span class="sm:hidden font-semibold">Phone: </span>(987) 654-3210
+        </td>
+        <td class="border px-4 py-2 sm:table-cell block sm:inline-block">
+          <span class="sm:hidden font-semibold">Address: </span>456 Elm St
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+*/

@@ -1,13 +1,11 @@
-import "./App.css";
 import DataTable from "./components/DataTable";
+import Header from "./components/header";
 
 function App() {
   return (
-    <>
-      <h2>Annual income statements for Apple Inc.</h2>
-      <br />
+    <div className="bg-blue-400">
       <DataTable />
-    </>
+    </div>
   );
 }
 

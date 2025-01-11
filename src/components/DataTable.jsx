@@ -8,6 +8,7 @@ import LowRevenueInput from "./revenueInputs/LowRevenueInput";
 import HighRevenueInput from "./revenueInputs/HighRevenueInput";
 import LowIncomeInput from "./incomeInputs/LowIncomeInput";
 import HighIncomeInput from "./incomeInputs/HighIncomeInput";
+import Header from "./header";
 
 export default function DataTable() {
   const [finData, setFinData] = useState([]);
@@ -79,7 +80,7 @@ export default function DataTable() {
     setHighIncome(event.target.value);
   };
 
-  // Sorting
+  // Sort
   switch (sortBy) {
     case "dateDes":
       approvedData.sort((a, b) => {
@@ -119,17 +120,17 @@ export default function DataTable() {
 
   if (tableRows.length === 0) {
     return (
-      <div className="dataTable">
+      <div className="overflow-x-auto">
         <SortByInput sortBy={sortBy} handleSortByChange={handleSortByChange} />
-        <table>
-          <thead>
+        <table className="min-w-full table-auto">
+          <thead className="bg-gray-300">
             <tr>
-              <th>Date</th>
-              <th>Revenue</th>
-              <th>Net Income</th>
-              <th>Gross Profit</th>
-              <th>Earnings Per Share</th>
-              <th>Operating Income</th>
+              <th className="px-4 py-2 text-left">Date</th>
+              <th className="px-4 py-2 text-left">Revenue</th>
+              <th className="px-4 py-2 text-left">Net Income</th>
+              <th className="px-4 py-2 text-left">Gross Profit</th>
+              <th className="px-4 py-2 text-left">Earnings Per Share</th>
+              <th className="px-4 py-2 text-left">Operating Income</th>
             </tr>
             <tr>
               <th>
@@ -162,9 +163,11 @@ export default function DataTable() {
                   handleHighIncomeChange={handleHighIncomeChange}
                 />
               </th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
-          <tbody></tbody>
         </table>
         <h3>No entries match your criteria</h3>
       </div>
@@ -172,17 +175,18 @@ export default function DataTable() {
   }
 
   return (
-    <div className="dataTable">
+    <div className="overflow-x-auto min-h-screen grid place-content-center">
+      <Header />
       <SortByInput sortBy={sortBy} handleSortByChange={handleSortByChange} />
-      <table>
-        <thead>
+      <table className="min-w-full table-auto">
+        <thead className="bg-gray-300">
           <tr>
-            <th>Date</th>
-            <th>Revenue</th>
-            <th>Net Income</th>
-            <th>Gross Profit</th>
-            <th>Earnings Per Share</th>
-            <th>Operating Income</th>
+            <th className="px-4 py-2 text-left">Date</th>
+            <th className="px-4 py-2 text-left">Revenue</th>
+            <th className="px-4 py-2 text-left">Net Income</th>
+            <th className="px-4 py-2 text-left">Gross Profit</th>
+            <th className="px-4 py-2 text-left">Earnings Per Share</th>
+            <th className="px-4 py-2 text-left">Operating Income</th>
           </tr>
           <tr>
             <th>
@@ -215,6 +219,9 @@ export default function DataTable() {
                 handleHighIncomeChange={handleHighIncomeChange}
               />
             </th>
+            <th></th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>{tableRows}</tbody>
