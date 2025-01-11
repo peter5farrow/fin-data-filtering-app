@@ -15,7 +15,7 @@ export default function LowIncomeInput({ lowIncome, handleLowIncomeChange }) {
   }
 
   return (
-    <>
+    <div className="text-xs">
       <label>From </label>
       <select
         name="lowIncome"
@@ -24,6 +24,6 @@ export default function LowIncomeInput({ lowIncome, handleLowIncomeChange }) {
       >
         {optionsArray}
       </select>
-    </>
+    </div>
   );
 }

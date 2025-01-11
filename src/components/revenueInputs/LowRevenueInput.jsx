@@ -18,7 +18,7 @@ export default function LowRevenueInput({
   }
 
   return (
-    <>
+    <div className="text-xs">
       <label>From </label>
       <select
         name="lowRevenue"
@@ -27,6 +27,6 @@ export default function LowRevenueInput({
       >
         {optionsArray}
       </select>
-    </>
+    </div>
   );
 }

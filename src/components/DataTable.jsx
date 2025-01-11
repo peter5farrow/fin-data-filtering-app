@@ -120,9 +120,10 @@ export default function DataTable() {
 
   if (tableRows.length === 0) {
     return (
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto min-h-screen grid">
+        <Header />
         <SortByInput sortBy={sortBy} handleSortByChange={handleSortByChange} />
-        <table className="min-w-full table-auto">
+        <table className="w-5/6 h-1/2 table-auto relative top-1/3 left-1/2 transform -translate-x-1/2 shadow-2xl">
           <thead className="bg-gray-300">
             <tr>
               <th className="px-4 py-2 text-left">Date</th>
@@ -168,17 +169,26 @@ export default function DataTable() {
               <th></th>
             </tr>
           </thead>
+          <tbody>
+            <tr className="bg-white">
+              <td>No</td>
+              <td>items</td>
+              <td>match</td>
+              <td>your</td>
+              <td>search</td>
+              <td>criteria</td>
+            </tr>
+          </tbody>
         </table>
-        <h3>No entries match your criteria</h3>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto min-h-screen grid place-content-center">
+    <div className="overflow-x-auto min-h-screen grid">
       <Header />
       <SortByInput sortBy={sortBy} handleSortByChange={handleSortByChange} />
-      <table className="min-w-full table-auto">
+      <table className="w-5/6 h-1/2 table-auto relative top-1/3 left-1/2 transform -translate-x-1/2">
         <thead className="bg-gray-300">
           <tr>
             <th className="px-4 py-2 text-left">Date</th>

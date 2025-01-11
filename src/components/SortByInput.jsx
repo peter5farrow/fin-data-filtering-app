@@ -1,7 +1,7 @@
 export default function SortByInput({ sortBy, handleSortByChange }) {
   return (
-    <div className="mt-5">
-      <label>Sort by:</label>
+    <div className="text-center absolute top-1/4 left-1/2 transform -translate-x-1/2">
+      <label>Sort by: </label>
       <select name="sortByInput" value={sortBy} onChange={handleSortByChange}>
         <option value="dateDes">Date (New - Old)</option>
         <option value="dateAsc">Date (Old - New)</option>

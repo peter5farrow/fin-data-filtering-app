@@ -18,7 +18,7 @@ export default function HighRevenueInput({
   }
 
   return (
-    <>
+    <div className="text-xs">
       <label> to </label>
       <select
         name="highRevenue"
@@ -27,6 +27,6 @@ export default function HighRevenueInput({
       >
         {optionsArray}
       </select>
-    </>
+    </div>
   );
 }

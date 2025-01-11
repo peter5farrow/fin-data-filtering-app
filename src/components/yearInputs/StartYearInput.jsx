@@ -13,7 +13,7 @@ export default function StartYearInput({ startYear, handleStartYearChange }) {
   }
 
   return (
-    <>
+    <div className="text-xs">
       <label>From </label>
       <select
         name="startYear"
@@ -22,6 +22,6 @@ export default function StartYearInput({ startYear, handleStartYearChange }) {
       >
         {optionsArray}
       </select>
-    </>
+    </div>
   );
 }

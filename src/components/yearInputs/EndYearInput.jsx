@@ -13,11 +13,11 @@ export default function EndYearInput({ endYear, handleEndYearChange }) {
   }
 
   return (
-    <>
+    <div className="text-xs">
       <label> to </label>
       <select name="endYear" value={endYear} onChange={handleEndYearChange}>
         {optionsArray}
       </select>
-    </>
+    </div>
   );
 }
