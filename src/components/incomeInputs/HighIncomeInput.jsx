@@ -1,4 +1,4 @@
-import formatNumber from "../../utils/formatNumber";
+import { formatNumber, formatSmaller } from "../../utils/formatNumber";
 
 export default function HighIncomeInput({
   highIncome,
@@ -11,19 +11,22 @@ export default function HighIncomeInput({
   while (currentIncome >= lowestIncome) {
     optionsArray.push(
       <option key={currentIncome} value={currentIncome}>
-        {formatNumber(currentIncome)}
+        {formatSmaller(currentIncome)}
       </option>
     );
     currentIncome -= 1000000000;
   }
 
   return (
-    <select
-      name="highIncome"
-      value={highIncome}
-      onChange={handleHighIncomeChange}
-    >
-      {optionsArray}
-    </select>
+    <>
+      <label> to </label>
+      <select
+        name="highIncome"
+        value={highIncome}
+        onChange={handleHighIncomeChange}
+      >
+        {optionsArray}
+      </select>
+    </>
   );
 }

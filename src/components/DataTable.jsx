@@ -117,11 +117,73 @@ export default function DataTable() {
     return <TableRow key={entry.fillingDate} entry={entry} />;
   });
 
+  if (tableRows.length === 0) {
+    return (
+      <div className="dataTable">
+        <SortByInput sortBy={sortBy} handleSortByChange={handleSortByChange} />
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Revenue</th>
+              <th>Net Income</th>
+              <th>Gross Profit</th>
+              <th>Earnings Per Share</th>
+              <th>Operating Income</th>
+            </tr>
+            <tr>
+              <th>
+                <StartYearInput
+                  startYear={startYear}
+                  handleStartYearChange={handleStartYearChange}
+                />
+                <EndYearInput
+                  endYear={endYear}
+                  handleEndYearChange={handleEndYearChange}
+                />
+              </th>
+              <th>
+                <LowRevenueInput
+                  lowRevenue={lowRevenue}
+                  handleLowRevenueChange={handleLowRevenueChange}
+                />
+                <HighRevenueInput
+                  highRevenue={highRevenue}
+                  handleHighRevenueChange={handleHighRevenueChange}
+                />
+              </th>
+              <th>
+                <LowIncomeInput
+                  lowIncome={lowIncome}
+                  handleLowIncomeChange={handleLowIncomeChange}
+                />
+                <HighIncomeInput
+                  highIncome={highIncome}
+                  handleHighIncomeChange={handleHighIncomeChange}
+                />
+              </th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <h3>No entries match your criteria</h3>
+      </div>
+    );
+  }
+
   return (
     <div className="dataTable">
       <SortByInput sortBy={sortBy} handleSortByChange={handleSortByChange} />
       <table>
         <thead>
+          <tr>
+            <th>Date</th>
+            <th>Revenue</th>
+            <th>Net Income</th>
+            <th>Gross Profit</th>
+            <th>Earnings Per Share</th>
+            <th>Operating Income</th>
+          </tr>
           <tr>
             <th>
               <StartYearInput
@@ -134,34 +196,25 @@ export default function DataTable() {
               />
             </th>
             <th>
-              <HighRevenueInput
-                highRevenue={highRevenue}
-                handleHighRevenueChange={handleHighRevenueChange}
-              />
               <LowRevenueInput
                 lowRevenue={lowRevenue}
                 handleLowRevenueChange={handleLowRevenueChange}
               />
+              <HighRevenueInput
+                highRevenue={highRevenue}
+                handleHighRevenueChange={handleHighRevenueChange}
+              />
             </th>
             <th>
-              <HighIncomeInput
-                highIncome={highIncome}
-                handleHighIncomeChange={handleHighIncomeChange}
-              />
               <LowIncomeInput
                 lowIncome={lowIncome}
                 handleLowIncomeChange={handleLowIncomeChange}
               />
+              <HighIncomeInput
+                highIncome={highIncome}
+                handleHighIncomeChange={handleHighIncomeChange}
+              />
             </th>
-          </tr>
-
-          <tr>
-            <th>Date</th>
-            <th>Revenue</th>
-            <th>Net Income</th>
-            <th>Gross Profit</th>
-            <th>Earnings Per Share</th>
-            <th>Operating Income</th>
           </tr>
         </thead>
         <tbody>{tableRows}</tbody>

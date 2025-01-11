@@ -1,4 +1,4 @@
-import formatNumber from "../../utils/formatNumber";
+import { formatNumber, formatSmaller } from "../../utils/formatNumber";
 
 export default function HighRevenueInput({
   highRevenue,
@@ -11,19 +11,22 @@ export default function HighRevenueInput({
   while (currentRevenue >= lowestRevenue) {
     optionsArray.push(
       <option key={currentRevenue} value={currentRevenue}>
-        {formatNumber(currentRevenue)}
+        {formatSmaller(currentRevenue)}
       </option>
     );
     currentRevenue -= 10000000000;
   }
 
   return (
-    <select
-      name="highRevenue"
-      value={highRevenue}
-      onChange={handleHighRevenueChange}
-    >
-      {optionsArray}
-    </select>
+    <>
+      <label> to </label>
+      <select
+        name="highRevenue"
+        value={highRevenue}
+        onChange={handleHighRevenueChange}
+      >
+        {optionsArray}
+      </select>
+    </>
   );
 }

@@ -13,8 +13,15 @@ export default function StartYearInput({ startYear, handleStartYearChange }) {
   }
 
   return (
-    <select name="startYear" value={startYear} onChange={handleStartYearChange}>
-      {optionsArray}
-    </select>
+    <>
+      <label>From </label>
+      <select
+        name="startYear"
+        value={startYear}
+        onChange={handleStartYearChange}
+      >
+        {optionsArray}
+      </select>
+    </>
   );
 }

@@ -13,8 +13,11 @@ export default function EndYearInput({ endYear, handleEndYearChange }) {
   }
 
   return (
-    <select name="endYear" value={endYear} onChange={handleEndYearChange}>
-      {optionsArray}
-    </select>
+    <>
+      <label> to </label>
+      <select name="endYear" value={endYear} onChange={handleEndYearChange}>
+        {optionsArray}
+      </select>
+    </>
   );
 }
