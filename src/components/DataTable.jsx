@@ -8,7 +8,7 @@ import LowRevenueInput from "./revenueInputs/LowRevenueInput";
 import HighRevenueInput from "./revenueInputs/HighRevenueInput";
 import LowIncomeInput from "./incomeInputs/LowIncomeInput";
 import HighIncomeInput from "./incomeInputs/HighIncomeInput";
-import Header from "./header";
+import Header from "./Header";
 
 export default function DataTable() {
   const [finData, setFinData] = useState([]);
