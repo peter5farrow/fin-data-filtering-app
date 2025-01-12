@@ -13,7 +13,7 @@ export default function StartYearInput({ startYear, handleStartYearChange }) {
   }
 
   return (
-    <div className="text-xs">
+    <div className="text-xs mb-1">
       <label>From </label>
       <select
         name="startYear"

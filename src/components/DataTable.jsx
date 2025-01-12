@@ -27,16 +27,16 @@ export default function DataTable() {
   const apiKey = import.meta.env.VITE_API_KEY;
 
   // Fetch
-  useEffect(() => {
-    const fetchFinData = async () => {
-      const res = await axios.get(
-        `https://financialmodelingprep.com/api/v3/income-statement/AAPL?period=annual&apikey=${apiKey}`
-      );
-      setFinData(res.data);
-      setApprovedData(res.data);
-    };
-    fetchFinData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchFinData = async () => {
+  //     const res = await axios.get(
+  //       `https://financialmodelingprep.com/api/v3/income-statement/AAPL?period=annual&apikey=${apiKey}`
+  //     );
+  //     setFinData(res.data);
+  //     setApprovedData(res.data);
+  //   };
+  //   fetchFinData();
+  // }, []);
 
   // Filter
   useEffect(() => {
@@ -118,13 +118,97 @@ export default function DataTable() {
     return <TableRow key={entry.fillingDate} entry={entry} />;
   });
 
+  // For styling without using up API calls
+  const emptyRows = [];
+  for (let i = 1; i <= 5; i++) {
+    emptyRows.push(
+      <TableRow
+        key={i}
+        entry={{
+          date: i,
+          revenue: i * 10000000000,
+          netIncome: i * 10000000000,
+          grossProfit: i * 10000000000,
+          eps: 7,
+          operatingIncome: i * 10000000000,
+        }}
+      />
+    );
+  }
+
   if (tableRows.length === 0) {
     return (
-      <div className="overflow-x-auto min-h-screen grid">
+      <div className="overflow-x-auto min-h-screen grid justify-items-center items-center">
         <Header />
+
+        <div className="w-5/6 relative top-24 sm:top-0">
+          <SortByInput
+            sortBy={sortBy}
+            handleSortByChange={handleSortByChange}
+          />
+
+          <table className="w-full h-1/2 mr-32 table-auto relative top-3 shadow-2xl">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="px-4 py-2 text-left">Date</th>
+                <th className="px-4 py-2 text-left">Revenue</th>
+                <th className="px-4 py-2 text-left">Net Income</th>
+                <th className="px-4 py-2 text-left">Gross Profit</th>
+                <th className="px-4 py-2 text-left">Earnings Per Share</th>
+                <th className="px-4 py-2 text-left">Operating Income</th>
+              </tr>
+              <tr>
+                <th>
+                  <StartYearInput
+                    startYear={startYear}
+                    handleStartYearChange={handleStartYearChange}
+                  />
+                  <EndYearInput
+                    endYear={endYear}
+                    handleEndYearChange={handleEndYearChange}
+                  />
+                </th>
+                <th>
+                  <LowRevenueInput
+                    lowRevenue={lowRevenue}
+                    handleLowRevenueChange={handleLowRevenueChange}
+                  />
+                  <HighRevenueInput
+                    highRevenue={highRevenue}
+                    handleHighRevenueChange={handleHighRevenueChange}
+                  />
+                </th>
+                <th>
+                  <LowIncomeInput
+                    lowIncome={lowIncome}
+                    handleLowIncomeChange={handleLowIncomeChange}
+                  />
+                  <HighIncomeInput
+                    highIncome={highIncome}
+                    handleHighIncomeChange={handleHighIncomeChange}
+                  />
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>{emptyRows}</tbody>
+          </table>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="overflow-x-auto min-h-screen grid justify-items-center items-center">
+      <Header />
+
+      <div className="w-5/6 relative top-24 sm:top-0">
         <SortByInput sortBy={sortBy} handleSortByChange={handleSortByChange} />
-        <table className="w-5/6 h-1/2 table-auto relative top-1/3 left-1/2 transform -translate-x-1/2 shadow-2xl">
-          <thead className="bg-gray-300">
+
+        <table className="w-full h-1/2 mr-32 table-auto relative top-3 shadow-2xl">
+          <thead className="bg-gray-200">
             <tr>
               <th className="px-4 py-2 text-left">Date</th>
               <th className="px-4 py-2 text-left">Revenue</th>
@@ -169,73 +253,9 @@ export default function DataTable() {
               <th></th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="bg-white">
-              <td>No</td>
-              <td>items</td>
-              <td>match</td>
-              <td>your</td>
-              <td>search</td>
-              <td>criteria</td>
-            </tr>
-          </tbody>
+          <tbody>{tableRows}</tbody>
         </table>
       </div>
-    );
-  }
-
-  return (
-    <div className="overflow-x-auto min-h-screen grid">
-      <Header />
-      <SortByInput sortBy={sortBy} handleSortByChange={handleSortByChange} />
-      <table className="w-5/6 h-1/2 table-auto relative top-1/3 left-1/2 transform -translate-x-1/2">
-        <thead className="bg-gray-300">
-          <tr>
-            <th className="px-4 py-2 text-left">Date</th>
-            <th className="px-4 py-2 text-left">Revenue</th>
-            <th className="px-4 py-2 text-left">Net Income</th>
-            <th className="px-4 py-2 text-left">Gross Profit</th>
-            <th className="px-4 py-2 text-left">Earnings Per Share</th>
-            <th className="px-4 py-2 text-left">Operating Income</th>
-          </tr>
-          <tr>
-            <th>
-              <StartYearInput
-                startYear={startYear}
-                handleStartYearChange={handleStartYearChange}
-              />
-              <EndYearInput
-                endYear={endYear}
-                handleEndYearChange={handleEndYearChange}
-              />
-            </th>
-            <th>
-              <LowRevenueInput
-                lowRevenue={lowRevenue}
-                handleLowRevenueChange={handleLowRevenueChange}
-              />
-              <HighRevenueInput
-                highRevenue={highRevenue}
-                handleHighRevenueChange={handleHighRevenueChange}
-              />
-            </th>
-            <th>
-              <LowIncomeInput
-                lowIncome={lowIncome}
-                handleLowIncomeChange={handleLowIncomeChange}
-              />
-              <HighIncomeInput
-                highIncome={highIncome}
-                handleHighIncomeChange={handleHighIncomeChange}
-              />
-            </th>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>{tableRows}</tbody>
-      </table>
     </div>
   );
 }

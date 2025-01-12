@@ -18,7 +18,7 @@ export default function LowRevenueInput({
   }
 
   return (
-    <div className="text-xs">
+    <div className="text-xs mb-1">
       <label>From </label>
       <select
         name="lowRevenue"

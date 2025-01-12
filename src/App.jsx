@@ -1,9 +1,8 @@
 import DataTable from "./components/DataTable";
-import Header from "./components/header";
 
 function App() {
   return (
-    <div className="bg-blue-400">
+    <div className="radial-gradient">
       <DataTable />
     </div>
   );

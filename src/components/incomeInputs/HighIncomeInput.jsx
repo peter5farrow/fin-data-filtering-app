@@ -18,7 +18,7 @@ export default function HighIncomeInput({
   }
 
   return (
-    <div className="text-xs">
+    <div className="text-xs mb-1">
       <label> to </label>
       <select
         name="highIncome"
