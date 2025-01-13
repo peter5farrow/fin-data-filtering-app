@@ -27,16 +27,16 @@ export default function DataTable() {
   const apiKey = import.meta.env.VITE_API_KEY;
 
   // Fetch
-  // useEffect(() => {
-  //   const fetchFinData = async () => {
-  //     const res = await axios.get(
-  //       `https://financialmodelingprep.com/api/v3/income-statement/AAPL?period=annual&apikey=${apiKey}`
-  //     );
-  //     setFinData(res.data);
-  //     setApprovedData(res.data);
-  //   };
-  //   fetchFinData();
-  // }, []);
+  useEffect(() => {
+    const fetchFinData = async () => {
+      const res = await axios.get(
+        `https://financialmodelingprep.com/api/v3/income-statement/AAPL?period=annual&apikey=${apiKey}`
+      );
+      setFinData(res.data);
+      setApprovedData(res.data);
+    };
+    fetchFinData();
+  }, []);
 
   // Filter
   useEffect(() => {
@@ -114,27 +114,28 @@ export default function DataTable() {
       break;
   }
 
+  //Rows
   const tableRows = approvedData.map((entry) => {
     return <TableRow key={entry.fillingDate} entry={entry} />;
   });
 
   // For styling without using up API calls
-  const emptyRows = [];
-  for (let i = 1; i <= 5; i++) {
-    emptyRows.push(
-      <TableRow
-        key={i}
-        entry={{
-          date: i,
-          revenue: i * 10000000000,
-          netIncome: i * 10000000000,
-          grossProfit: i * 10000000000,
-          eps: 7,
-          operatingIncome: i * 10000000000,
-        }}
-      />
-    );
-  }
+  // const emptyRows = [];
+  // for (let i = 1; i <= 5; i++) {
+  //   emptyRows.push(
+  //     <TableRow
+  //       key={i}
+  //       entry={{
+  //         date: i,
+  //         revenue: i * 10000000000,
+  //         netIncome: i * 10000000000,
+  //         grossProfit: i * 10000000000,
+  //         eps: 4.5,
+  //         operatingIncome: i * 10000000000,
+  //       }}
+  //     />
+  //   );
+  // }
 
   if (tableRows.length === 0) {
     return (
@@ -193,7 +194,16 @@ export default function DataTable() {
                 <th></th>
               </tr>
             </thead>
-            <tbody>{emptyRows}</tbody>
+            <tbody>
+              <tr className="bg-white">
+                <td>NO</td>
+                <td>ITEMS</td>
+                <td>MATCH</td>
+                <td>YOUR</td>
+                <td>SEARCH</td>
+                <td>CRITERIA</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>

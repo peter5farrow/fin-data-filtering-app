@@ -53,3 +53,7 @@ export function formatSmaller(number) {
     return `$${digits[0] + digits[1] + digits[2]}.${+digits[3]} billion`;
   }
 }
+
+export function formatEPS(number) {
+  return `$${number}`;
+}

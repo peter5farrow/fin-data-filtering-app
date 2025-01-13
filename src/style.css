@@ -691,7 +691,7 @@ video {
   background: radial-gradient(rgb(62, 169, 187), rgb(172, 218, 246));
 }
 
-@media (min-width: 640px) {
+@media (min-width: 850px) {
   .sm\:top-0 {
     top: 0px;
   }
